@@ -1,0 +1,15 @@
+{
+  "name": "vivek-task",
+  "version": "1.0.0",
+  "description": "code challenge for coller api with aws lambda and dynamodb",
+  "main": "handler.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [],
+  "author": "Vivek Chaudhari",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  }
+}

@@ -1,0 +1,54 @@
+service: vivek-task
+
+custom:
+  settings:
+    COLLER_TABLE: code-challenge-203-vivek
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  environment: ${self:custom.settings}
+  iamRoleStatements:
+   - Effect: "Allow"
+     Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+     Resource:
+      - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.COLLER_TABLE}"
+
+functions:
+  addColler:
+    handler: handler.addColler
+    events:
+    - http:
+        path: /coller
+        method: post
+  getCollers:
+    handler: handler.getCollers
+    events:
+    - http:
+        path: /coller
+        method: get
+
+resources:
+  Resources:
+    CollersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+        - AttributeName: "id"
+          AttributeType: "S"
+        - AttributeName: "location"
+          AttributeType: "S"
+        KeySchema:
+        - AttributeName: "location"
+          KeyType: "HASH"
+        - AttributeName: "id"
+          KeyType: "RANGE"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.settings.COLLER_TABLE}

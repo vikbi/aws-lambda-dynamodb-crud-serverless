@@ -1,6 +1,5 @@
 ### To Deploy Coller api on aws with cloudformation
 
-1. System setup
 
 ## Setup & Deployment
 Deploying the api will require [npm](https://www.npmjs.com/), [serverless](https://serverless.com/), the [AWS CLI](https://aws.amazon.com/cli/), and an AWS account. The AWS credentials for that account should be [set up in the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html). Configure the right aws secretKey and AccessKey from console.
